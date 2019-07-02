@@ -306,9 +306,6 @@ export default function createAnimatableComponent(WrappedComponent) {
       if (animation) {
         const startAnimation = () => {
           onAnimationBegin();
-          this.startAnimation(duration, 0, iterationDelay, endState =>
-            this.props.onAnimationEnd(endState),
-          );
           this.delayTimer = null;
         };
         if (delay) {
@@ -317,6 +314,9 @@ export default function createAnimatableComponent(WrappedComponent) {
           startAnimation();
         }
       }
+      this.startAnimation(duration, 0, iterationDelay, endState =>
+        this.props.onAnimationEnd(endState),
+      );
     }
 
     componentWillReceiveProps(props) {
